@@ -14,12 +14,13 @@ import java.util.logging.Logger;
  */
 public class OracleConnection {
 
+    private static OracleConnection OC = null;
     private Connection connection;
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "sys as sysdba";
     private static final String PASSWORD = "root";
 
-    public OracleConnection() {
+    private OracleConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -28,6 +29,12 @@ public class OracleConnection {
         }
     }
 
+    public static OracleConnection getInstance(){
+        if(OC == null)
+            OC = new OracleConnection();
+        return OC;
+    }
+    
     public String test() {
         String test = "";
         try {
