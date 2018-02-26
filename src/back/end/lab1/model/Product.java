@@ -11,15 +11,13 @@ public class Product {
     private int price;
     private int imported;
     private Kind kind;
-    private int tax;
 
-    public Product(String code, String name, int price, int imported, Kind kind, int tax) {
+    public Product(String code, String name, int price, int imported, Kind kind) {
         this.code = code;
         this.name = name;
         this.price = price;
         this.imported = imported;
         this.kind = kind;
-        this.tax = tax;
     }
 
     public String getCode() {
@@ -61,12 +59,5 @@ public class Product {
     public void setKind(Kind kind) {
         this.kind = kind;
     }
-
-    public int getTax() {
-        return tax;
-    }
-
-    public void setTax(int tax) {
-        this.tax = tax;
-    }
+    
 }

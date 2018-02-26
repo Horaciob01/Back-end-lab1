@@ -16,10 +16,9 @@ public class BackEndLab1 {
 
     public static void main(String[] args) {
         try {
-            Product p = new Product("x5", "insertado", 0, 0, new Kind(1, "", 0), 0);
+            Product p = new Product("x5", "insertado", 0, 0, new Kind(1, "", 0));
             ProductManager.getInstance().getAll();
             KindManager.getInstance().getAll();
-            //ProductManager.getInstance().create(p);
             p.setPrice(400);
             ProductManager.getInstance().createOrUpdate(p,ProductManager.UPDATE);
             ProductManager.getInstance().delete(p);

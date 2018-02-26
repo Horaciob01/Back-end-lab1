@@ -12,7 +12,7 @@ public class OracleConnection {
 
     protected Connection connection;
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-    private static final String USER = "sys as sysdba";
+    private static final String USER = "system";
     private static final String PASSWORD = "root";
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 

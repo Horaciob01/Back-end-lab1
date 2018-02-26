@@ -46,7 +46,7 @@ public class ProductManager extends OracleConnection {
         pstmt.setInt(3, product.getPrice());
         pstmt.setInt(4, product.getImported());
         pstmt.setInt(5, product.getKind().getId());
-        pstmt.setInt(6, product.getTax());
+        
         if (pstmt.execute()) {
             if (t == CREATE) {
                 throw new Exception("failed to insert");
@@ -84,8 +84,7 @@ public class ProductManager extends OracleConnection {
                 rs.getString("nombre"),
                 rs.getInt("precio"),
                 rs.getInt("importado"),
-                new Kind(rs.getInt("id"), rs.getString("tipo_nombre"), rs.getInt("porcentaje_impuesto")),
-                rs.getInt("impuesto"));
+                new Kind(rs.getInt("id"), rs.getString("tipo_nombre"), rs.getInt("porcentaje_impuesto")));
         pstmt.close();
         disconnect();
         return product;
@@ -99,14 +98,17 @@ public class ProductManager extends OracleConnection {
         pstmt.registerOutParameter(1, OracleTypes.CURSOR);
         pstmt.execute();
         ResultSet rs = (ResultSet) pstmt.getObject(1);
+        String as = "";
         while (rs.next()) {
+           // as = rs.getString("codigo");
+            
             list.add(new Product(
                     rs.getString("codigo"),
                     rs.getString("nombre"),
                     rs.getInt("precio"),
                     rs.getInt("importado"),
-                    new Kind(rs.getInt("id"), rs.getString("tipo_nombre"), rs.getInt("porcentaje_impuesto")),
-                    rs.getInt("impuesto")));
+                    new Kind(rs.getInt("id"), rs.getString("nombre"), rs.getInt("porcentaje_impuesto"))
+            ));
         }
         pstmt.close();
         disconnect();
