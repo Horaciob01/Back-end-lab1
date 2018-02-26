@@ -14,8 +14,8 @@ public class ProductManager extends OracleConnection {
 
     private static OracleConnection OC = null;
     private static final String GETALLSTM = "{? = call buscar_productos()}";
-    private static final String CREATESTM = "{call insertar_producto(?,?,?,?,?,?)}";
-    private static final String UPDATESTM = "{call modificar_producto(?,?,?,?,?,?)}";
+    private static final String CREATESTM = "{call insertar_producto(?,?,?,?,?)}";
+    private static final String UPDATESTM = "{call modificar_producto(?,?,?,?,?)}";
     private static final String READSTM = "{? = call buscar_producto(?)}";
     private static final String DELETESTM = "{call eliminar_producto(?)}";
     public static final int CREATE = 0;
@@ -53,6 +53,8 @@ public class ProductManager extends OracleConnection {
             } else {
                 throw new Exception("failed to update");
             }
+        }else{
+            System.out.println("exito");
         }
         pstmt.close();
         disconnect();
@@ -76,7 +78,7 @@ public class ProductManager extends OracleConnection {
         connect();
         pstmt = connection.prepareCall(READSTM);
         pstmt.registerOutParameter(1, OracleTypes.CURSOR);
-        pstmt.setString(2, code);
+        pstmt.setString(1, code);
         pstmt.execute();
         ResultSet rs = (ResultSet) pstmt.getObject(1);
         product = new Product(

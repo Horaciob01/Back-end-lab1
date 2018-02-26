@@ -17,11 +17,12 @@ public class BackEndLab1 {
     public static void main(String[] args) {
         try {
             Product p = new Product("x5", "insertado", 0, 0, new Kind(1, "", 0));
+            Product p1 = new Product("x7", "Marco", 0, 0, new Kind(1, "", 0));
             ProductManager.getInstance().getAll();
             KindManager.getInstance().getAll();
             p.setPrice(400);
-            ProductManager.getInstance().createOrUpdate(p,ProductManager.UPDATE);
-            ProductManager.getInstance().delete(p);
+            //ProductManager.getInstance().createOrUpdate(p1,ProductManager.CREATE);
+            //ProductManager.getInstance().delete(p);
             ProductManager.getInstance().read("x2");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(BackEndLab1.class.getName()).log(Level.SEVERE, null, ex);
